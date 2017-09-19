@@ -1,6 +1,7 @@
 var express = require('express');
 var graphqlHTTP = require('express-graphql');
-var {schema} =  require('./schema');
+var {schema} = require('./schema');
+var config = require('./config.json');
 var app = express();
 
 app.use('/graphql', graphqlHTTP({
@@ -8,6 +9,6 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }));
 
-app.listen(3000, function () {
-    console.log('Listening on port 3000!');
+app.listen(config.port, function () {
+    console.log('Listening on port ' + config.port);
 });
