@@ -18,7 +18,24 @@ const typeDefs = `
     NORMAL
   }
   
+  enum DisplayNameFormat {
+    FIRST_SECOND,
+    SECOND_FIRST
+  }
+  
   type Employee {
+    displayNameFormat: DisplayNameFormat
+  }
+  
+  type AppConfig {
+    employee: Employee
+  }
+  
+  type mutation_AppConfig {
+    employee(displayNameFormat: DisplayNameFormat): Employee
+  }
+  
+  type Employee1 {
     id: Int,
     name: String!,
     active: Boolean,
@@ -28,13 +45,18 @@ const typeDefs = `
   type Department {
     id: Int,
     name: String!,
-    employees: [Employee!]
+    employees: [Employee1!]
     departments: [Department!]
   }
 
   type Query {
     get_department(id: Int): Department,
-    get_employee(id: Int): Employee
+    get_employee(id: Int): Employee,
+    appConfig: AppConfig
+  }
+  
+  type Mutation {
+    appConfig: mutation_AppConfig
   }
 `;
 
